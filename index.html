@@ -192,14 +192,12 @@
     }
 
     durationSelect.addEventListener('change', () => {
-      // Only allow duration change when timer is stopped to avoid jumps.
-      if (intervalId === null) {
-        totalSeconds = parseInt(durationSelect.value, 10) * 60;
-        remainingSeconds = totalSeconds;
-        messageEl.textContent = '';
-        render();
-      }
-    });
+      pauseTimer(); // stop if running
+      totalSeconds = parseInt(durationSelect.value, 10) * 60;
+      remainingSeconds = totalSeconds;
+      messageEl.textContent = '';
+      render();
+    });    
 
     startBtn.addEventListener('click', startTimer);
     pauseBtn.addEventListener('click', pauseTimer);
